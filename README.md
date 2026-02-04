@@ -1,2 +1,2 @@
-"# bill-of-rights" 
-"# bill-of-rights" 
+# Hello world 
+# This is a school project
