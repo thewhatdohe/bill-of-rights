@@ -1,0 +1,540 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #3e2723;
+    --secondary-color: #6d4c41;
+    --accent-color: #8b6f47;
+    --light-bg: #f5e6d3;
+    --white: #fef8f0;
+    --text-dark: #3e2723;
+    --text-light: #5d4037;
+    --border-color: #a1887f;
+    --social-color: #8b6f47;
+    --parchment: #f4ede4;
+}
+
+body {
+    font-family: 'Georgia', 'Garamond', serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background: #e8d7c3;
+    min-height: 100vh;
+    padding: 20px 0;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(139, 111, 71, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 0 6px rgba(139, 111, 71, 0);
+    }
+}
+
+@keyframes borderWave {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 40px 0;
+    }
+}
+
+/* Animation Classes */
+.fade-in-down {
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out 0.2s both;
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.8s ease-out;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.8s ease-out;
+}
+
+.scale-in {
+    animation: scaleIn 0.6s ease-out;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Parchment Borders */
+.parchment-border {
+    height: 15px;
+    background: linear-gradient(to right, 
+        var(--secondary-color) 0%, 
+        var(--accent-color) 25%, 
+        var(--secondary-color) 50%, 
+        var(--accent-color) 75%, 
+        var(--secondary-color) 100%);
+    margin: 30px 0;
+    border-radius: 2px;
+    box-shadow: 0 3px 8px rgba(62, 39, 35, 0.2);
+}
+
+.parchment-border.top {
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.parchment-border.bottom {
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+/* Section Title Styles */
+.section-title {
+    font-size: 2.2em;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Scroll Animations - Trigger on Scroll */
+.right-card {
+    opacity: 0;
+}
+
+.right-card.in-view {
+    animation: scaleIn 0.6s ease-out forwards;
+}
+
+/* Header Section */
+.header {
+    background: var(--parchment);
+    padding: 50px 30px;
+    border-radius: 4px;
+    box-shadow: 0 8px 20px rgba(62, 39, 35, 0.15);
+    margin-bottom: 30px;
+    text-align: center;
+    border: 3px solid var(--secondary-color);
+    position: relative;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(139, 111, 71, 0.03) 2px,
+            rgba(139, 111, 71, 0.03) 4px
+        );
+    pointer-events: none;
+    border-radius: 4px;
+}
+
+.title {
+    font-size: 2.8em;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-shadow: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+}
+
+.student-info {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    font-size: 1.1em;
+    position: relative;
+    z-index: 1;
+}
+
+.student-info p {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    background: var(--secondary-color);
+    color: var(--white);
+    border: 2px solid var(--primary-color);
+    padding: 12px 25px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(62, 39, 35, 0.2);
+    font-family: 'Georgia', serif;
+    font-weight: 500;
+}
+
+.nav-btn:hover {
+    background: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(62, 39, 35, 0.3);
+}
+
+.nav-btn:active {
+    transform: translateY(0);
+}
+
+/* Rights Section */
+.rights-section {
+    margin-bottom: 40px;
+}
+
+.rights-section h2 {
+    font-size: 2.2em;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.rights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.right-card {
+    background: var(--parchment);
+    border-left: 6px solid var(--accent-color);
+    border-radius: 2px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(62, 39, 35, 0.12);
+    transition: all 0.3s ease;
+    position: relative;
+    border: 1px solid var(--border-color);
+}
+
+.right-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(62, 39, 35, 0.18);
+}
+
+.right-card.social-issue {
+    border-left-color: var(--primary-color);
+}
+
+.right-number {
+    display: inline-block;
+    background: var(--secondary-color);
+    color: var(--white);
+    width: 50px;
+    height: 50px;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border: 2px solid var(--primary-color);
+}
+
+.right-card.social-issue .right-number {
+    background: var(--primary-color);
+}
+
+.right-title {
+    font-size: 1.3em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.right-content {
+    margin: 15px 0;
+}
+
+.section {
+    margin-bottom: 15px;
+}
+
+.section h4 {
+    font-size: 0.95em;
+    color: var(--secondary-color);
+    margin-bottom: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.section p {
+    color: var(--text-light);
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+.badge {
+    display: inline-block;
+    background: var(--accent-color);
+    color: var(--white);
+    padding: 5px 12px;
+    border-radius: 0;
+    font-size: 0.75em;
+    font-weight: 600;
+    margin-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border: 1px solid var(--primary-color);
+}
+
+/* Reflection Section */
+.reflection-section {
+    background: var(--parchment);
+    padding: 40px 30px;
+    border-radius: 2px;
+    box-shadow: 0 4px 15px rgba(62, 39, 35, 0.12);
+    margin-bottom: 40px;
+    border: 3px solid var(--secondary-color);
+}
+
+.reflection-section h2 {
+    font-size: 2em;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.reflection-box {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 2px;
+    border-left: 6px solid var(--secondary-color);
+    border: 1px solid var(--border-color);
+}
+
+.reflection-box p {
+    color: var(--text-dark);
+    font-size: 1.05em;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* Footer */
+.footer {
+    background: rgba(62, 39, 35, 0.1);
+    color: var(--text-dark);
+    text-align: center;
+    padding: 20px;
+    border-radius: 2px;
+    margin-top: 40px;
+    border-top: 2px solid var(--secondary-color);
+}
+
+.footer p {
+    margin: 5px 0;
+    font-size: 0.95em;
+}
+
+.note {
+    font-style: italic;
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: var(--white);
+        padding: 0;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .right-card {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid var(--border-color);
+    }
+
+    .reflection-section {
+        page-break-inside: avoid;
+        box-shadow: none;
+    }
+
+    .footer {
+        background: transparent;
+        color: var(--text-dark);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2em;
+    }
+
+    .student-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .rights-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rights-section h2 {
+        font-size: 1.8em;
+    }
+
+    .right-card {
+        padding: 20px;
+    }
+
+    .nav {
+        gap: 10px;
+    }
+
+    .nav-btn {
+        padding: 10px 18px;
+        font-size: 0.9em;
+    }
+
+    .header {
+        padding: 25px 20px;
+    }
+
+    .reflection-section {
+        padding: 25px 20px;
+    }
+
+    .reflection-box {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.5em;
+    }
+
+    .right-card {
+        padding: 15px;
+    }
+
+    .section h4 {
+        font-size: 0.85em;
+    }
+
+    .section p {
+        font-size: 0.9em;
+    }
+
+    .nav-btn {
+        padding: 8px 15px;
+        font-size: 0.85em;
+    }
+}

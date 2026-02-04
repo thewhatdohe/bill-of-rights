@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ bill.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Decorative Top Border -->
+        <div class="parchment-border top"></div>
+
+        <!-- Header Section -->
+        <header class="header fade-in-down">
+            <h1 class="title">{{ bill.title }}</h1>
+            <div class="student-info">
+                <p><strong>Student:</strong> {{ bill.name }}</p>
+                <p><strong>Class:</strong> {{ bill.class }}</p>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav fade-in">
+            <button class="nav-btn" onclick="scrollToSection('rights')">View Rights</button>
+            <button class="nav-btn" onclick="scrollToSection('reflection')">Reflection</button>
+            <a href="/static/documents/pdf.pdf" download="/static/documents/pdf.pdf" class="nav-btn">Download PDF</a>
+        </nav>
+
+        <!-- Rights Section -->
+        <section id="rights" class="rights-section">
+            <h2 class="section-title slide-in-left">My Bill of Rights</h2>
+            <div class="rights-grid">
+                {% for right in bill.rights %}
+                <article class="right-card {% if right.get('is_social_issue') %}social-issue{% endif %} scale-in">
+                    <div class="right-number pulse">{{ right.number }}</div>
+                    <h3 class="right-title">{{ right.title }}</h3>
+                    
+                    <div class="right-content">
+                        <div class="section">
+                            <h4>Explanation:</h4>
+                            <p>{{ right.explanation }}</p>
+                        </div>
+                        
+                        <div class="section">
+                            <h4>Real-life Example:</h4>
+                            <p>{{ right.example }}</p>
+                        </div>
+                    </div>
+                    
+                    {% if right.get('is_social_issue') %}
+                    <div class="badge">Current Social Issue</div>
+                    {% endif %}
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Reflection Section -->
+        <section id="reflection" class="reflection-section fade-in-up">
+            <h2 class="section-title slide-in-right">Reflection: Top Three Rights</h2>
+            <div class="reflection-box">
+                <p>{{ bill.reflection }}</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer fade-in">
+            <p>© 2026 {{ bill.name }} | {{ bill.class }}</p>
+            <p class="note">This website can also be interpreted as a PDF File.</p>
+        </footer>
+
+        <!-- Decorative Bottom Border -->
+        <div class="parchment-border bottom"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
